@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        <style type="text/css">
+            li {
+                float:left;
+                text-decoration: none;
+                width:30%;
+                background-color: black;
+                
+            }
+            .cabecera{
+                width:100%;
+                background-color: black;
+                color: whitesmoke;
+                
+            }
+            div{
+                margin: 10px;
+                clear: both;
+            }
+        </style>
+    </head>
+    <body ng-app="tareaApp">
+        <a href="#/">Inicio</a>
+        <div class="cabecera">
+            <ul>
+                <li><a href="#fw">Framework</a></li>
+                <li><a href="#angular">Angularjs</a></li>
+                <li><a href="#routing">Angularjs-routing</a></li>
+             </ul>
+        </div>
+        
+        
+        <div ng-view></div> <!-- en esta capa se muestran las vistas contenidas en $routeProvider-->
+        
+        
+        <script type="text/javascript">
+            var app = angular.module("tareaApp", ["ngRoute"]); //acceso a las dependecias de angular routing
+            app.config(function($routeProvider) { // define el código o las páginas que van a ser mostradas en la capa correspondiente.
+                $routeProvider // defininimos cada una de las vistas que se mostrarán como código o como archivos
+                .when("/", {
+                  template : "<p><h2>Tarea DWEC06 en formato web</h2></p> <p>Aplicando el módulo routing de Angularjs</p>"
+                })
+                .when("/fw", {
+                  templateUrl : "fw.html"
+                })
+                .when("/angular", {
+                  templateUrl : "angular.html"
+                })
+                .when("/routing", {
+                  templateUrl : "routing.html"
+                });
+              });
+        </script>
+    </body>
+</html>

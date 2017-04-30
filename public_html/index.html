@@ -6,43 +6,90 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Angularjs routing</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
         <style type="text/css">
-            li {
-                float:left;
-                text-decoration: none;
-                width:30%;
-                background-color: black;
-                
-            }
-            .cabecera{
+            
+            ul.cabecera {
                 width:100%;
-                background-color: black;
+                list-style-type: none;
+                display:block;
+                margin:0;
+                padding-left: 3px;
+                
+                text-align: center;
+          
+            }   
+            ul.cabecera li {
+                float:left;
+                width:33%;
+                display: inline-block;
+                text-decoration: none;
                 color: whitesmoke;
+                border: 1px solid;
+               
+              
+                background:black;
                 
             }
-            div{
-                margin: 10px;
+            ul.cabecera li a{
+                text-decoration: none;
+                color:whitesmoke;
+                font-size: 1.8em;
+            }
+            ul.cabecera li a:active{
+                text-decoration: none;
+                
+            }
+            ul.cabecera li a:hover{
+                text-decoration: none;
+                    
+            }
+            ul.cabecera li a:visited{
+                text-decoration: none;
+            }
+            
+            .cabecera{
+                width:82%;
+                background: black; 
+                color: whitesmoke;
+                padding: 0px;
+                margin:auto;
+                
+            }
+            div.ng-view{
+                
+                width:80%;
+                height: 600px;
+                margin: auto;
+                padding: 10px;
                 clear: both;
+                border:1px solid;
+                
+            }
+            .pk {
+                color: blueviolet;
+            }
+            .imagenes{
+                text-align: center;
             }
         </style>
     </head>
     <body ng-app="tareaApp">
-        <a href="#/">Inicio</a>
+        <h2><a href="#/">Inicio</a></h2>
         <div class="cabecera">
-            <ul>
+            
+           <ul class="cabecera">
                 <li><a href="#fw">Framework</a></li>
                 <li><a href="#angular">Angularjs</a></li>
                 <li><a href="#routing">Angularjs-routing</a></li>
              </ul>
+        
         </div>
-        
-        
-        <div ng-view></div> <!-- en esta capa se muestran las vistas contenidas en $routeProvider-->
+        <div class="ng-view"></div> <!-- en esta capa se muestran las vistas contenidas en $routeProvider-->
         
         
         <script type="text/javascript">
@@ -50,17 +97,28 @@ and open the template in the editor.
             app.config(function($routeProvider) { // define el código o las páginas que van a ser mostradas en la capa correspondiente.
                 $routeProvider // defininimos cada una de las vistas que se mostrarán como código o como archivos
                 .when("/", {
-                  template : "<p><h2>Tarea DWEC06 en formato web</h2></p> <p>Aplicando el módulo routing de Angularjs</p>"
+                  template : "<p><h2>Tarea DWEC06 en formato web</h2></p> <p>Cómo funciona Angularjs en formato web</p>"
                 })
                 .when("/fw", {
                   templateUrl : "fw.html"
                 })
                 .when("/angular", {
-                  templateUrl : "angular.html"
+                  templateUrl : "angular.html",
+                  controller : "angularCtrl"
                 })
                 .when("/routing", {
-                  templateUrl : "routing.html"
+                  templateUrl : "routing.html",
+                  controller: "routingCtrl"
+                })
+                .otherwise({
+                    template: "<h1>No se ha seleccionado nada</h1>"
                 });
+              });
+              app.controller ("routingCtrl",function($scope) {
+                  $scope.pagina="fw.html"
+              });
+              app.controller ("angularCtrl",function($scope) {
+                  $scope.destino="https://es.wikipedia.org/wiki/Modelo%E2%80%93vista%E2%80%93controlador"
               });
         </script>
     </body>
